@@ -3,14 +3,16 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class func {
+
+    static Scanner scnr = new Scanner(System.in);
+
     public static void main(String[] args) {
 
-        Scanner scnr = new Scanner(System.in);
         System.out.println("Insert array 1 size:");
         int array1Size = scnr.nextInt();
+
         System.out.println("Insert array 2 size:");
         int array2Size = scnr.nextInt();
-
 
         if(array1Size != array2Size){
             System.err.println("Arrays not even!");
@@ -18,20 +20,15 @@ public class func {
         }
 
         double[] numbers1 = new double[array1Size];
-
         double[] numbers2 = new double[array2Size];
 
-
-        fillArray(numbers1, array1Size, 50);
-
-        fillArray(numbers2, array2Size, 50);
+        fillArray(numbers1, array1Size, 40);
+        fillArray(numbers2, array2Size, 25);
 
         System.out.println("ARRAY 1:");
         arrayPrint(numbers1);
         System.out.println("\nARRAY 2:");
         arrayPrint(numbers2);
-
-
 
         System.out.println("\nADD " + Arrays.toString(func.arrayAdd(numbers1, numbers2)));
         System.out.println("SUBTRACT " + Arrays.toString(func.arraySubtract(numbers1, numbers2)));
@@ -47,12 +44,11 @@ public class func {
         }
     }
 
-    private static double[] arrayPrint(double[] array){
+    private static void arrayPrint(double[] array){
         for(double i: array){
             System.out.print(i + " ");
         }
         System.out.print("\n");
-        return  array;
     }
 
     private static double[] arrayAdd(double[] arr1, double[] arr2) {
