@@ -4,81 +4,90 @@ import java.util.Scanner;
 
 public class func {
 
-    static Scanner scnr = new Scanner(System.in);
-
     public static void main(String[] args) {
 
-        System.out.println("Insert array 1 size:");
-        int array1Size = scnr.nextInt();
+        Scanner scnr = new Scanner(System.in);
 
-        System.out.println("Insert array 2 size:");
-        int array2Size = scnr.nextInt();
+        System.out.println("Array 1 Size:");
+        int numArray1Size = scnr.nextInt();
 
-        if(array1Size != array2Size){
-            System.err.println("Arrays not even!");
+        System.out.println("Array 2 Size:");
+        int numArray2Size = scnr.nextInt();
+
+        if(numArray1Size == 0 || numArray2Size == 0){
+            System.err.println("Array size must be at least 1!");
+            System.exit(0);
+        }
+        if(numArray1Size != numArray2Size){
+            System.err.println("Array sizes not even!");
             System.exit(0);
         }
 
-        double[] numbers1 = new double[array1Size];
-        double[] numbers2 = new double[array2Size];
+        System.out.println("Enter max boundary for Array:");
+        int boundary = scnr.nextInt();
 
-        fillArray(numbers1, array1Size, 40);
-        fillArray(numbers2, array2Size, 25);
+        if(boundary < 1){
+            System.err.println("Boundary must be at least 1!");
+            System.exit(0);
+        }
+
+        double[] numArray1 = new double[numArray1Size];
+        double[] numArray2 = new double[numArray2Size];
+
+        fillArray(numArray1, numArray1Size, boundary);
+        fillArray(numArray2, numArray2Size, boundary);
 
         System.out.println("ARRAY 1:");
-        arrayPrint(numbers1);
+        System.out.println(Arrays.toString(numArray1));
         System.out.println("\nARRAY 2:");
-        arrayPrint(numbers2);
+        System.out.println(Arrays.toString(numArray2));
 
-        System.out.println("\nADD " + Arrays.toString(func.arrayAdd(numbers1, numbers2)));
-        System.out.println("SUBTRACT " + Arrays.toString(func.arraySubtract(numbers1, numbers2)));
-        System.out.println("MULTIPLY " + Arrays.toString(func.arrayMultiply(numbers1, numbers2)));
-        System.out.println("DIVIDE " + Arrays.toString(func.arrayDivide(numbers1, numbers2)));
+        System.out.println(Arrays.toString(func.arrayAdd(numArray1, numArray2)));
+        System.out.println(Arrays.toString(func.arraySubtract(numArray1, numArray2)));
+        System.out.println( Arrays.toString(func.arrayMultiply(numArray1, numArray2)));
+        System.out.println(Arrays.toString(func.arrayDivide(numArray1, numArray2)));
     }
 
     private static void fillArray(double[] array, int size, int bound) {
-        Random rng = new Random();
+        Random generator = new Random();
         for(int i = 0; i < size; i++){
-            int rnd = rng.nextInt(bound);
-            array[i] = rnd;
+            int random = generator.nextInt(bound);
+            array[i] = random;
         }
     }
 
-    private static void arrayPrint(double[] array){
-        for(double i: array){
-            System.out.print(i + " ");
-        }
-        System.out.print("\n");
-    }
-
-    private static double[] arrayAdd(double[] arr1, double[] arr2) {
-        double[] sum = new double[arr1.length];
+    private static double[] arrayAdd(double[] array1, double[] array2) {
+        System.out.print("\nADDITION: ");
+        double[] sum = new double[array1.length];
             for(int i = 0; i < sum.length; i++){
-                sum[i] = arr1[i] + arr2[i];
+                sum[i] = array1[i] + array2[i];
             }
         return sum;
     }
 
-    private static double[] arraySubtract(double[] arr1, double[] arr2){
-        double[] sum = new double[arr1.length];
+    private static double[] arraySubtract(double[] array1, double[] array2){
+        System.out.print("SUBTRACTION: ");
+        double[] sum = new double[array1.length];
             for(int i = 0; i < sum.length; i++){
-                sum[i] = arr1[i] - arr2[i];
+                sum[i] = array1[i] - array2[i];
             }
         return sum;
     }
 
-    private static double[] arrayMultiply(double[] arr1, double[] arr2){
-        double[] sum = new double[arr1.length];
+    private static double[] arrayMultiply(double[] array1, double[] array2){
+        System.out.print("MULTIPLICATION: ");
+        double[] sum = new double[array1.length];
             for(int i = 0; i < sum.length; i++){
-                sum[i] = arr1[i] * arr2[i];
+                sum[i] = array1[i] * array2[i];
             }
         return sum;
     }
 
-    private static double[] arrayDivide(double[] arr1, double[] arr2){
-        double[] sum = new double[arr1.length];
+    private static double[] arrayDivide(double[] array1, double[] array2){
+        System.out.print("DIVISION: ");
+        double[] sum = new double[array1.length];
             for(int i = 0; i < sum.length; i++){
-                sum[i] = arr1[i] / arr2[i];
+                sum[i] = array1[i] / array2[i];
             }
         return sum;
     }
